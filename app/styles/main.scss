@@ -1,91 +1,187 @@
-$icon-font-path: "/bower_components/sass-bootstrap/fonts/";
+@import 'compass/reset';
+@import 'compass';
 
-@import 'sass-bootstrap/lib/bootstrap';
+html, body {
 
-.browsehappy {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
+    height: 100%;
+    font-size: 16px;
 }
 
-/* Space out content a bit */
-body {
-    padding-top: 20px;
-    padding-bottom: 20px;
+$color-grey-dark: rgb(51, 51, 51);
+
+/* ------------------------------------------------------------ */
+/* ----- TYPE ------------------------------------------------- */
+/* ------------------------------------------------------------ */
+
+%heading {
+    font-family: "raleway", serif;
+    font-weight: 100;
+
+    color: $color-grey-dark;
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-    padding-left: 15px;
-    padding-right: 15px;
+%paragraph {
+    font-family: "jaf-facitweb", serif;
+    font-weight: 200;
+    font-size: 1em;
+    line-height: 1.5em;
+
+    margin-bottom: 1em;
+
+    color: $color-grey-dark;
 }
 
-/* Custom page header */
-.header {
-    border-bottom: 1px solid #e5e5e5;
+p {
+    @extend %paragraph;
 }
 
-/* Make the masthead heading the same height as the navigation */
-.header h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
-}
+.standfirst {
+    @extend %heading;
+    position: absolute;
+    top: 50%;
+    margin-top: -0.5em;
+    width: 100%;
 
-/* Custom page footer */
-.footer {
-    padding-top: 19px;
-    color: #777;
-    border-top: 1px solid #e5e5e5;
-}
 
-.container-narrow > hr {
-    margin: 30px 0;
-}
-
-/* Main marketing message and sign up button */
-.jumbotron {
+    font-size: 4.7em;
     text-align: center;
-    border-bottom: 1px solid #e5e5e5;
 }
 
-.jumbotron .btn {
-    font-size: 21px;
-    padding: 14px 24px;
+/* ------------------------------------------------------------ */
+/* ----- PAGE LAYOUT ------------------------------------------ */
+/* ------------------------------------------------------------ */
+
+.container {
+    width: 100%;
+    height: 100%;
 }
 
-/* Supporting marketing content */
-.marketing {
-    margin: 40px 0;
+.page {
+    @include clearfix;
+    position: relative;
+    min-height: 100%;
 }
 
-.marketing p + h4 {
-    margin-top: 28px;
+/* ----- ABOUT ME --------------------------------------------- */
+
+.page--about {
+
+
 }
 
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-    .container {
-        max-width: 730px;
+.page--about p {
+    width: 100%;
+    text-align: center;
+}
+
+.about__photo {
+
+    width: 180px;
+    margin: 0 auto 20px;
+    overflow: visible;
+    
+    img {
+
+        display: block;
+        width: 100%;
+        height: auto;
+        @include border-radius(50%);
+        @include transition(all 350ms);
+        @include scale(0.8, 0.8);
     }
 
-    /* Remove the padding we set earlier */
-    .header,
-    .marketing,
-    .footer {
-        padding-left: 0;
-        padding-right: 0;
+    &:hover {
+
+        img {
+            @include scale(1, 1);
+            
+        }
     }
-    /* Space out the masthead */
-    .header {
-        margin-bottom: 30px;
+}
+
+/* ----- WORK ------------------------------------------------- */
+
+.page--work {}
+
+.work {
+    @include clearfix;
+    width: 680px;
+    margin: 0 auto;
+}
+
+%work__half {
+    float: left;
+    width: 320px;
+    margin: 0 10px;
+
+    @media screen and (max-width: 680px) {
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
     }
-    /* Remove the bottom border on the jumbotron for visual effect */
-    .jumbotron {
-        border-bottom: 0;
+
+    @media screen and (max-width: 340px) {
+        width: auto;
+        margin-left: 10px;
+        margin-right: 10px;
     }
+}
+
+.work__image {
+    @extend %work__half;
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.work__details {
+    @extend %work__half;
+}
+
+.work--flip {
+
+    .work__image,
+    .work__details {
+        float: right;
+        text-align: right;
+
+        @media screen and (max-width: 680px) {
+            float: none;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
+
+        @media screen and (max-width: 340px) {
+            width: auto;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    }
+}
+
+.work__title {
+    @extend %heading;
+    font-size: 2em;
+    margin-bottom: 0.5em;
+}
+
+@media screen and (max-width: 680px) {
+
+    .work {
+        width: auto;
+    }
+
+    .work__image {
+        margin-bottom: 20px;
+    }
+}
+
+/* ----- CONTACT ---------------------------------------------- */
+
+.page--contact {
+    margin-top: -20%;
+    background: $color-grey-dark;
 }
