@@ -179,9 +179,19 @@ p {
     }
 }
 
+.work__gallery {
+    clear: both;
+    margin-top: 20px;
+    height: 400px;
+    background: #EAEAEA;
+    background: darken(white, 1%);
+
+    @include box-shadow(#CCC 0px 2px 5px 0 inset, #CCC 0px -2px 5px 0 inset);
+    @include transition(height 350ms);
+}
+
 /* ----- CONTACT ---------------------------------------------- */
 
 .page--contact {
-    margin-top: -20%;
     background: $color-grey-dark;
 }
