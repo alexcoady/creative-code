@@ -65,6 +65,8 @@ p {
     @include clearfix;
     position: relative;
     min-height: 100%;
+
+    @include transition(background 600ms);
 }
 
 /* ----- ABOUT ME --------------------------------------------- */
@@ -92,14 +94,22 @@ p {
         height: auto;
         @include border-radius(50%);
         @include transition(all 350ms);
-        @include scale(0.8, 0.8);
+        @include scale(0, 0);
+        @include opacity(0);
+    }
+
+    .been-active & {
+
+        img {
+            @include scale(0.8, 0.8);
+            @include opacity(1);
+        }
     }
 
     &:hover {
 
         img {
             @include scale(1, 1);
-            
         }
     }
 }
@@ -109,6 +119,10 @@ p {
 .page--work {}
 
 .work {
+    margin-top: 20px;
+}
+
+.work__intro {
     @include clearfix;
     width: 680px;
     margin: 0 auto;
@@ -199,7 +213,7 @@ p {
 
 .work__gallery.is-active {
 
-    height: 400px;
+    height: 300px;
 }
 
 /* ----- CONTACT ---------------------------------------------- */
