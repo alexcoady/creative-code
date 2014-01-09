@@ -19,6 +19,7 @@ $color-grey-dark: rgb(51, 51, 51);
 /* ------------------------------------------------------------ */
 
 %heading {
+    margin-bottom: 0.5em;
     font-family: "raleway", serif;
     font-weight: 100;
 
@@ -47,14 +48,33 @@ p {
     margin-top: -0.5em;
     width: 100%;
 
-
     font-size: 4.7em;
     text-align: center;
+}
+
+@media screen and (max-width: 480px) {
+    .standfirst {
+        margin-top: -1em;
+    }
 }
 
 /* ------------------------------------------------------------ */
 /* ----- PAGE LAYOUT ------------------------------------------ */
 /* ------------------------------------------------------------ */
+
+.container {
+    @include clearfix;
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (max-width: 680px) {
+    .container {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
 
 .site {
     width: 100%;
@@ -71,10 +91,7 @@ p {
 
 /* ----- ABOUT ME --------------------------------------------- */
 
-.page--about {
-
-
-}
+.page--about {}
 
 .page--about p {
     width: 100%;
@@ -122,32 +139,9 @@ p {
     margin-top: 20px;
 }
 
-.work__intro {
-    @include clearfix;
-    width: 680px;
-    margin: 0 auto;
-}
-
-%work__half {
-    float: left;
-    width: 320px;
-    margin: 0 10px;
-
-    @media screen and (max-width: 680px) {
-        float: none;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    @media screen and (max-width: 340px) {
-        width: auto;
-        margin-left: 10px;
-        margin-right: 10px;
-    }
-}
-
 .work__image {
-    @extend %work__half;
+    @include column(4);
+    @include push(2);
 
     img {
         width: 100%;
@@ -156,64 +150,48 @@ p {
 }
 
 .work__details {
-    @extend %work__half;
-}
-
-.work--flip {
-
-    .work__image,
-    .work__details {
-        float: right;
-        text-align: right;
-
-        @media screen and (max-width: 680px) {
-            float: none;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: left;
-        }
-
-        @media screen and (max-width: 340px) {
-            width: auto;
-            margin-left: 10px;
-            margin-right: 10px;
-        }
-    }
+    @include column(4);
 }
 
 .work__title {
     @extend %heading;
     font-size: 2em;
-    margin-bottom: 0.5em;
+}
+
+@media screen and (max-width: 960px) {
+
+    .work__image {
+        @include column(5);
+        @include push(1);
+    }
+
+    .work__details {
+        @include column(5);
+    }
 }
 
 @media screen and (max-width: 680px) {
 
-    .work {
-        width: auto;
+    .work__image {
+        @include column(6);
+        @include push(0);
     }
+
+    .work__details {
+        @include column(6);
+    }
+}
+
+@media screen and (max-width: 480px) {
 
     .work__image {
+        @include column(12);
         margin-bottom: 20px;
     }
-}
 
-.work__gallery {
-    clear: both;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    height: 0;
-    overflow: hidden;
-
-    background: darken(#FFF, 2%);
-
-    @include box-shadow(#CCC 0px 2px 5px 0 inset, #CCC 0px -2px 5px 0 inset);
-    @include transition(height 350ms);
-}
-
-.work__gallery.is-active {
-
-    height: 300px;
+    .work__details {
+        @include column(12);
+    }
 }
 
 /* ----- CONTACT ---------------------------------------------- */

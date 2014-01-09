@@ -1,8 +1,6 @@
 var creativecode = function () {
 	'use strict';
 
-	console.log('hi bbz');
-
 	/*
 	*	Loops through page sections and binds to
 	*	their coming in and out of window focus
@@ -38,7 +36,6 @@ var creativecode = function () {
 			pages.push(page);
 		}
 
-		// Bind to window scroll
 		function bindScroll () {
 
 			var scrollTop = $(window).scrollTop(),
@@ -49,10 +46,9 @@ var creativecode = function () {
 				page = pages[i];
 
 				if ( scrollTop + (windowHeight/2) >= page.upper && scrollTop + (windowHeight/2) <= page.lower ) {
-
-					console.log( 'active', page.el );
 					
 					page.$el.addClass('is-active been-active');
+				
 				} else {
 
 					page.$el.removeClass('is-active');
@@ -60,9 +56,8 @@ var creativecode = function () {
 			}
 		}
 
+		bindScroll();
 		$(window).on('scroll', bindScroll);
-
-		// Apply classes / fire events
 	}
 
 	return {
